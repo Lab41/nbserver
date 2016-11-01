@@ -9,8 +9,7 @@ script:
   - docker build -t lab41/base_notebook 01_base_notebook
 
 after_success:
-  - echo "Checking branch to see if we should deploy... $TRAVIS_BRANCH"
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+  - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_REPO_SLUG" == "Lab41/nbserver" ]; then
       docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" &&
       docker push lab41/base_notebook;
     fi
