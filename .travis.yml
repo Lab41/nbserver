@@ -11,6 +11,6 @@ script:
 after_success:
   - echo "Checking branch to see if we should deploy... $TRAVIS_BRANCH"
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-      docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+      docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" &&
       docker push lab41/base_notebook;
     fi
