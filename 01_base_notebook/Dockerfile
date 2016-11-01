@@ -115,23 +115,21 @@ USER $NB_USER
 
 # Install Python 3 packages
 RUN conda install --quiet --yes \
-    'ipywidgets=4.1*' \
-    'pandas=0.17*' \
-    'numexpr=2.5*' \
-    'matplotlib=1.5*' \
-    'scipy=0.17*' \
-    'seaborn=0.7*' \
-    'scikit-learn=0.17*' \
-    'scikit-image=0.11*' \
-    'sympy=0.7*' \
-    'cython=0.23*' \
-    'patsy=0.4*' \
-    'statsmodels=0.6*' \
+    'bokeh=0.12*' \
     'cloudpickle=0.1*' \
+    'cython=0.24*' \
     'dill=0.2*' \
-    'numba=0.23*' \
-    'bokeh=0.11*' \
-    'h5py=2.5*' \
+    'h5py=2.6*' \
+    'ipywidgets=5.2*' \
+    'matplotlib=1.5*' \
+    'numba=0.29*' \
+    'numexpr=2.6*' \
+    'pandas=0.18*' \
+    'patsy=0.4*' \
+    'scikit-image=0.12*' \
+    'scikit-learn=0.18*' \
+    'scipy=0.18*' \
+    'seaborn=0.7*' \
+    'statsmodels=0.6*' \
+    'sympy=1.0*' \
     && conda clean -tipsy
-
-USER $NB_USER
