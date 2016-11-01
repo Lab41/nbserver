@@ -79,6 +79,7 @@ RUN cd /tmp && \
 # Install Jupyter notebook as jovyan
 RUN conda install --quiet --yes \
     'notebook=4.1*' \
+    conda-build \
     terminado \
     && conda clean -tipsy
 
@@ -104,5 +105,31 @@ RUN chown -R $NB_USER:users /home/$NB_USER/.jupyter
 # Need to chmod them as I can run as $NB_USER
 RUN chown -R $NB_USER:users /usr/local/bin/
 
-# Switch back to jovyan to avoid accidental container runs as root
+# libav-tools for matplotlib anim
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libav-tools && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 USER $NB_USER
+
+# Install Python 3 packages
+RUN conda install --quiet --yes \
+    'bokeh=0.12*' \
+    'cloudpickle=0.1*' \
+    'cython=0.24*' \
+    'dill=0.2*' \
+    'h5py=2.6*' \
+    'ipywidgets=5.2*' \
+    'matplotlib=1.5*' \
+    'numba=0.29*' \
+    'numexpr=2.6*' \
+    'pandas=0.18*' \
+    'patsy=0.4*' \
+    'scikit-image=0.12*' \
+    'scikit-learn=0.18*' \
+    'scipy=0.18*' \
+    'seaborn=0.7*' \
+    'statsmodels=0.6*' \
+    'sympy=1.0*' \
+    && conda clean -tipsy
