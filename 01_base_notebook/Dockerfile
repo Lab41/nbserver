@@ -119,6 +119,7 @@ RUN conda install --quiet --yes \
     'cloudpickle=0.1*' \
     'cython=0.24*' \
     'dill=0.2*' \
+    'gensim=0.12*' \
     'h5py=2.6*' \
     'ipywidgets=5.2*' \
     'matplotlib=1.5*' \
@@ -126,6 +127,7 @@ RUN conda install --quiet --yes \
     'numexpr=2.6*' \
     'pandas=0.18*' \
     'patsy=0.4*' \
+    'pillow=3.4*' \
     'scikit-image=0.12*' \
     'scikit-learn=0.18*' \
     'scipy=0.18*' \
