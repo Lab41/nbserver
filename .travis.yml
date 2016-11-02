@@ -7,6 +7,7 @@ services:
 
 script:
   - docker build -t lab41/base-notebook 01_base_notebook
+  - docker build -t lab41/tensorflow-notebook 02_deep_learning
 
 after_success:
   - echo "TRAVIS_BRANCH\: $TRAVIS_BRANCH";
