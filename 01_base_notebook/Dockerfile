@@ -125,6 +125,7 @@ RUN conda install --quiet --yes \
     'matplotlib=1.5*' \
     'numba=0.29*' \
     'numexpr=2.6*' \
+    'numpy=1.11*' \
     'pandas=0.18*' \
     'patsy=0.4*' \
     'pillow=3.4*' \
