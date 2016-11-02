@@ -1,5 +1,4 @@
-#FROM lab41/base_notebook
-FROM l41-base-test
+FROM lab41/base_notebook
 
 USER root
 
