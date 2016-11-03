@@ -14,5 +14,6 @@ after_success:
     echo "TRAVIS_REPO_SLUG\: $TRAVIS_REPO_SLUG"
   - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_REPO_SLUG" == "Lab41/nbserver" ]; then
       docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" &&
-      docker push lab41/base-notebook;
+      docker push lab41/base-notebook &&
+      docker push lab41/tensorflow-notebook;
     fi
