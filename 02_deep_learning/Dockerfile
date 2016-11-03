@@ -11,8 +11,10 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
 
 USER $NB_USER
 
-# Install Tensorflow
-ENV TENSORFLOW_VERSION 0.11.0rc2
-ENV TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-${TENSORFLOW_VERSION}-cp35-cp35m-linux_x86_64.whl
+# Install Tensorflow and Keras
+ENV TENSORFLOW_VERSION=0.11.0rc2 \
+    KERAS_VERSION=1.1.*
+
 RUN pip --no-cache-dir install \
-    $TF_BINARY_URL
+    https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-${TENSORFLOW_VERSION}-cp35-cp35m-linux_x86_64.whl \
+    "keras==${KERAS_VERSION}"
