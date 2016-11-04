@@ -8,6 +8,7 @@ services:
 script:
   - docker build -t lab41/base-notebook 01_base_notebook
   - docker build -t lab41/tensorflow-notebook 02_deep_learning
+  - docker build -t lab41/tf-notebook-logged 03_ganymede_layer
 
 after_success:
   - echo "TRAVIS_BRANCH\: $TRAVIS_BRANCH";

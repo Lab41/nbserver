@@ -1,0 +1,2 @@
+ganymede>=0.1
+python-logstash>=0.4.6
