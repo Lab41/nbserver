@@ -69,9 +69,10 @@ sudo -E /opt/nopleats/makeLoggingWork
 echo "---- jupyterhub-singleuser ----"
 echo "USER: $USER"
 sudo -u $USER whoami
-#sudo -u $USER mkdir -p /data/fs4/nbuser/${USER}
-sudo -u $USER mkdir -p /data/fs4/home/${USER}
-cd /data/fs4/home/${USER}
+PERSISTENT_HOME=${PERSISTENT_BASE:="/home/"}/${USER}
+echo "PERSISTENT_HOME: $PERSISTENT_HOME"
+sudo -u $USER mkdir -p $PERSISTENT_HOME
+cd $PERSISTENT_HOME
 
 echo "---- Theano ----"
 THEANORC="${HOME}/.theanorc"
