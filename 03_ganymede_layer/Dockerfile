@@ -31,7 +31,7 @@ RUN apt-get install -y \
 
 # Install Mustache templater for replacing variables (maybe switch to Make?)
 RUN cd /opt/ && \
-    git clone https://github.com/pcallier/mo.git && \
+    git clone https://github.com/Lab41/mo.git && \
     ln -s /opt/mo/mo /usr/bin/mo
 
 # Install filebeat
