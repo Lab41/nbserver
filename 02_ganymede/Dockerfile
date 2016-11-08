@@ -1,4 +1,4 @@
-FROM lab41/tensorflow-notebook
+FROM lab41/base-notebook
 
 MAINTAINER Lab41
 
@@ -49,12 +49,6 @@ COPY nopleats/* /opt/nopleats/
 
 # Make it easy for the user to conda install libraries
 RUN chmod -R 777 /opt/conda
-
-#### ======= Dockerspawner logging stuff below ======
-
-# We will map to a real user at launch
-RUN userdel $NB_USER
-ENV SHELL /bin/bash
 
 # Execute the notebook server via bash script.
 CMD ["/bin/bash", "/srv/ganymede_nbserver/ganymede_nbserver.sh"]
