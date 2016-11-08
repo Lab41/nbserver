@@ -1,4 +1,4 @@
-FROM lab41/base_notebook
+FROM lab41/logging-notebook
 
 MAINTAINER Lab41
 
@@ -13,9 +13,11 @@ ENV CDH_VERSION 5.6.0
 
 # Install essential libraries
 RUN apt-get -y update && \
-    apt-get -y install software-properties-common && \
-    apt-get -y install wget curl && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+    apt-get -y install \
+    software-properties-common \
+    wget \
+    curl \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # =============================================================================
 # Requirement 2: Install Mesos to communicate with Mesos Master Leader
@@ -59,18 +61,16 @@ ENV PYTHONPATH $SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.9-src.zip
 ENV MESOS_NATIVE_JAVA_LIBRARY /usr/local/lib/libmesos.so
 
 # Util to help with kernel spec later
-RUN apt-get -y update && apt-get -y install jq apt-transport-https && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get -y update && \
+    apt-get -y install \
+    jq \
+    apt-transport-https \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Python 2 kernel spec into the Python 3 conda environment which
 # runs the notebook server
-RUN bash -c '. activate python2 && \
-    python -m ipykernel.kernelspec --prefix=$CONDA_DIR && \
-    . deactivate'
-# Set PYSPARK_HOME in the python2 spec
-RUN jq --arg v "$CONDA_DIR/envs/python2/bin/python" \
-    '.["env"]["PYSPARK_PYTHON"]=$v' \
-    $CONDA_DIR/share/jupyter/kernels/python2/kernel.json > /tmp/kernel.json && \
-    mv /tmp/kernel.json $CONDA_DIR/share/jupyter/kernels/python2/kernel.json
+
+USER root
 
 # =============================================================================4yy
 # Requirement 4: Install CDH for Hadoop HDFS
@@ -87,30 +87,7 @@ RUN cd /tmp && \
 RUN curl ${CLOUDERA_REPO_URL} -o /etc/apt/sources.list.d/cloudera-manager.list
 RUN curl ${CLOUDERA_REPO_KEY} | apt-key add -
 
-# Install Hadoop
-#RUN apt-get -y update && apt-get -y install apt-transport-https && apt-get clean && rm -rf /var/lib/apt/lists/*
-
 RUN apt-get -y update && \
     apt-get -y install hadoop-client && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-
-# =============================================================================
-# Requirement 8: Install Python dependencies
-# =============================================================================
-
-# Place the list of python dependencies and the script to install them in /tmp
-ADD dependencies/python/install-python-dependencies.sh /tmp
-ADD dependencies/python/python-dependencies.txt /tmp
-
-# Set PYDEP_PATH to be used later in the script
-ENV PYDEP_PATH /tmp/python-dependencies.txt
-
-# Run the script
-RUN chmod +x /tmp/install-python-dependencies.sh
-RUN /tmp/install-python-dependencies.sh
-
-# Clean up
-RUN rm /tmp/install-python-dependencies.sh /tmp/python-dependencies.txt
-
-USER $NB_USER

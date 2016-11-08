@@ -7,8 +7,9 @@ services:
 
 script:
   - docker build -t lab41/base-notebook 01_base_notebook
-  - docker build -t lab41/tensorflow-notebook 02_deep_learning
-  - docker build -t lab41/tf-notebook-logged 03_ganymede_layer
+  - docker build -t lab41/logging-notebook 02_ganymede
+  - docker build -t lab41/tensorflow-notebook 03_deep_learning
+  - docker build -t lab41/spark-notebook 03_spark
 
 after_success:
   - echo "TRAVIS_BRANCH\: $TRAVIS_BRANCH";
@@ -16,5 +17,7 @@ after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_REPO_SLUG" == "Lab41/nbserver" ]; then
       docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" &&
       docker push lab41/base-notebook &&
-      docker push lab41/tensorflow-notebook;
+      docker push lab41/logging-notebook &&
+      docker push lab41/tensorflow-notebook &&
+      docker push lab41/spark-notebook;
     fi
