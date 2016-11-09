@@ -7,7 +7,7 @@ USER root
 # Specify what version to use
 ENV JAVA_VERSION=oracle-java8 \
     MESOS_VERSION=0.28.0-2.0.16.ubuntu1404 \
-    SPARK_VERSION=1.6.1 \
+    SPARK_VERSION=2.0.1 \
     HADOOP_VERSION=2.6 \
     CDH_VERSION=5.6.0
 
@@ -40,7 +40,6 @@ RUN echo ${JAVA_VERSION}-installer shared/accepted-oracle-license-v1-1 select tr
     add-apt-repository -y ppa:webupd8team/java && \
     apt-get update && apt-get install -yq --no-install-recommends \
     ${JAVA_VERSION}-installer \
-    python \
     libnss3 \
     apt-transport-https \
     && apt-get clean && \
