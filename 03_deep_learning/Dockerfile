@@ -20,5 +20,3 @@ ENV TENSORFLOW_VERSION=0.11.0rc2 \
 RUN pip --no-cache-dir install \
     https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-${TENSORFLOW_VERSION}-cp35-cp35m-linux_x86_64.whl \
     "keras==${KERAS_VERSION}"
-
-USER root

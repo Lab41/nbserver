@@ -5,7 +5,16 @@ MAINTAINER Lab41
 USER root
 
 # Update apt-get
-RUN apt-get -y update
+RUN apt-get update && apt-get install -yq --no-install-recommends \
+    apt-transport-https \
+    ca-certificates \
+    curl \ 
+    rsyslog \
+    socat \
+    sudo \
+    vim \
+    && apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 #### ======= Ganymede logging stuff below ======
 
@@ -22,21 +31,13 @@ RUN chmod -R a+rx /srv/ganymede_nbserver/ && \
 
 #### ======= Nopleats logging stuff below ======
 
-# Nopleats logging requirements
-RUN apt-get install -y \
-    socat \
-    rsyslog \
-    sudo \
-    vim
-
 # Install Mustache templater for replacing variables (maybe switch to Make?)
 RUN cd /opt/ && \
     git clone https://github.com/Lab41/mo.git && \
     ln -s /opt/mo/mo /usr/bin/mo
 
 # Install filebeat
-RUN apt-get install -y curl apt-transport-https ca-certificates && \
-    cd /tmp && \
+RUN cd /tmp && \
     curl -Ls -O https://download.elastic.co/beats/filebeat/filebeat_1.2.0_amd64.deb && \
     dpkg -i filebeat_1.2.0_amd64.deb && \
     rm filebeat_1.2* && \
