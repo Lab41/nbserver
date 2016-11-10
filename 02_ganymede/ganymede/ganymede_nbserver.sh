@@ -27,6 +27,10 @@ echo "${USER} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/${USER} && chmod 0440 /e
 # To allow user to conda install and run pyspark.
 #sudo chmod -R a+rwx /opt
 
+echo "---- getting the GPU to work ----"
+# If we need the GPU, this is required. It is harmless if we do not.
+sudo ldconfig
+
 echo "---- getting pyspark to work ----"
 echo "[TEMP] Changing permissions to /var/opt directory."
 sudo chmod -R a+rwx /var/opt
