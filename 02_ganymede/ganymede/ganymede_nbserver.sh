@@ -69,7 +69,7 @@ sudo -E /opt/nopleats/makeLoggingWork
 echo "---- jupyterhub-singleuser ----"
 echo "USER: $USER"
 sudo -u $USER whoami
-PERSISTENT_HOME=${PERSISTENT_BASE:="/home/"}/${USER}
+PERSISTENT_HOME=${L41_PERSISTENT_BASE:="/home/"}/${USER}
 echo "PERSISTENT_HOME: $PERSISTENT_HOME"
 sudo -u $USER mkdir -p $PERSISTENT_HOME
 cd $PERSISTENT_HOME
