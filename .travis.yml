@@ -10,6 +10,9 @@ script:
   - docker build -t lab41/logging-notebook 02_ganymede
   - docker build -t lab41/tensorflow-notebook 03_deep_learning
   - docker build -t lab41/spark-notebook 03_spark
+    # Check that we can open python and import libraries
+  - docker run -it lab41/tensorflow-notebook python -c "import tensorflow; import keras"
+ #- docker run -it lab41/spark-notebook python -c "import pyspark"
 
 after_success:
   - echo "TRAVIS_BRANCH\: $TRAVIS_BRANCH";
