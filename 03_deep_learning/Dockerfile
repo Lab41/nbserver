@@ -19,5 +19,8 @@ RUN pip --no-cache-dir install \
     https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-${TENSORFLOW_VERSION}-cp35-cp35m-linux_x86_64.whl \
     "keras==${KERAS_VERSION}"
 
-# Link the CUDA drivers so TensorFlow can find them
-RUN  ln -s /usr/local/cuda/lib64/libcudnn.so.5 /usr/local/cuda/lib64/libcudnn.so
+# Install Theano
+RUN conda install six
+ENV THEANO_VERSION=rel-0.8.2
+RUN pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git@${THEANO_VERSION}
+RUN echo "[global]\ndevice=gpu\nfloatX=float32\n[lib]\ncnmem=0.1\n[nvcc]\nfastmath=True" > /root/.theanorc

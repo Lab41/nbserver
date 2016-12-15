@@ -1,7 +1,7 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
 
-FROM nvidia/cuda:8.0-cudnn5-runtime-ubuntu14.04
+FROM nvidia/cuda:8.0-cudnn5-devel-ubuntu14.04
 
 MAINTAINER Lab41
 
