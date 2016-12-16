@@ -29,6 +29,12 @@ COPY ganymede/* /srv/ganymede_nbserver/
 RUN chmod -R a+rx /srv/ganymede_nbserver/ && \
     pip install -r /srv/ganymede_nbserver/requirements.txt
 
+#### ======= nbgallery integration stuff below ======
+
+RUN git clone https://github.com/nbgallery/nbgallery-extensions.git /srv/nbgallery_extension && \
+    pip install /srv/nbgallery_extension/. && \
+    rm -rf /srv/nbgallery_extension
+
 #### ======= Nopleats logging stuff below ======
 
 # Install Mustache templater for replacing variables (maybe switch to Make?)

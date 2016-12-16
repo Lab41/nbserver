@@ -1,6 +1,8 @@
 c.NotebookApp.server_extensions = [
     'ganymede.ganymede',
+    'jupyter_nbgallery'
 ]
+c.NotebookApp.allow_origin = 'https://nb.gallery'
 
 from ganymede.ganymede import GanymedeHandler
 import logstash
