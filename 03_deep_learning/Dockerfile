@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     rm -rf /var/lib/apt/lists/*
 
 # Install Tensorflow and Keras
-ENV TENSORFLOW_VERSION=0.11.0rc2 \
+ENV TENSORFLOW_VERSION=0.11.0 \
     KERAS_VERSION=1.1.*
 
 RUN pip --no-cache-dir install \
