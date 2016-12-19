@@ -19,6 +19,6 @@ filebeat:
 
 output:
  logstash:
-  hosts: ["{{L41_LOGSTASH_HOST}}:{{L41_LOGSTASH_PORT}}"]
+  hosts: ["{{L41_LOGSTASH_HOST}}:{{L41_BEATS_PORT}}"]
 #use next line when sending to syslog server..
 #compression_level: 0
