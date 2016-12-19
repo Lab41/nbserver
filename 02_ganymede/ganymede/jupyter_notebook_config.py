@@ -15,3 +15,5 @@ if {"L41_LOGSTASH_HOST", "L41_GANYMEDE_PORT"} < set(os.environ):
             version=1,
         )
     ]
+
+GanymedeHandler.include_filepath = True
