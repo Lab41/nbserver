@@ -1,6 +1,6 @@
 c.NotebookApp.nbserver_extensions = {
-    'ganymede.ganymede': 'ganymede.ganymede',
-    'jupyter_nbgallery': 'jupyter_nbgallery'
+    'ganymede.ganymede': True,
+    'jupyter_nbgallery': True
 }
 c.NotebookApp.allow_origin = 'https://nb.gallery'
 
