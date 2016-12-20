@@ -87,7 +87,7 @@ jupyter nbextension install --py jupyter_nbgallery
 jupyter nbextension enable --py jupyter_nbgallery 
 
 sudo -E THEANO_FLAGS='floatX=float32,device=gpu0,lib.cnmem=1' \
-    -E PATH="${CONDA_DIR}/bin:$PATH" \
+    -E PATH="/usr/local/cuda/bin:${CONDA_DIR}/bin:$PATH" \
     -E PYTHONPATH="${PYTHONPATH}" \
     -E PYSPARK_SUBMIT_ARGS="${PYSPARK_SUBMIT_ARGS} pyspark-shell" \
     -u $USER /opt/conda/bin/jupyterhub-singleuser \
