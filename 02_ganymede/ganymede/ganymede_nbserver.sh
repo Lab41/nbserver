@@ -80,14 +80,14 @@ cd $PERSISTENT_HOME
 
 echo "---- Theano ----"
 THEANORC="${HOME}/.theanorc"
-sudo -u $USER echo "[global]\ndevice=gpu0\nfloatX=float32\n[lib]\ncnmem=1\n[nvcc]\nfastmath=True" > $THEANORC
+sudo -u $USER echo "[global]\ndevice=gpu0\nfloatX=float32\n[nvcc]\nfastmath=True" > $THEANORC
 
 echo "---- Add front-end nbgallery integrations ----"
 jupyter nbextension install --py jupyter_nbgallery
-jupyter nbextension enable --py jupyter_nbgallery 
+jupyter nbextension enable --py jupyter_nbgallery
 
-sudo -E THEANO_FLAGS='floatX=float32,device=gpu0,lib.cnmem=1' \
-    -E PATH="${CONDA_DIR}/bin:$PATH" \
+sudo -E THEANO_FLAGS='floatX=float32,device=gpu0' \
+    -E PATH="/usr/local/cuda/bin:${CONDA_DIR}/bin:$PATH" \
     -E PYTHONPATH="${PYTHONPATH}" \
     -E PYSPARK_SUBMIT_ARGS="${PYSPARK_SUBMIT_ARGS} pyspark-shell" \
     -u $USER /opt/conda/bin/jupyterhub-singleuser \
