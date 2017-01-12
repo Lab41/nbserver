@@ -13,11 +13,11 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
 
 # Install Tensorflow and Keras
 ENV TENSORFLOW_VERSION=0.11.0 \
-    KERAS_VERSION=1.2.*
+    KERAS_VERSION=2ad3544b017fe9c0d7a25ef0640baa52281372b5
 
 RUN pip --no-cache-dir install \
     https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-${TENSORFLOW_VERSION}-cp35-cp35m-linux_x86_64.whl \
-    "keras==${KERAS_VERSION}"
+    git+git://github.com/fchollet/keras.git@${KERAS_VERSION}
 
 # Install Theano
 RUN conda install six
