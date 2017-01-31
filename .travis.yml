@@ -12,6 +12,7 @@ script:
   - docker build -t lab41/spark-notebook 03_spark
   # Check that we can open python and import libraries
   - docker run -it lab41/tensorflow-notebook python -c "import tensorflow; import keras; import theano"
+  - docker run -it lab41/tensorflow-notebook nvidia-smi
  #- docker run -it lab41/spark-notebook python -c "import pyspark"
 
 after_success:
