@@ -139,4 +139,4 @@ RUN conda install --quiet --yes \
     && conda clean -tipsy
 
 # Add various nvidia directories to the path
-ENV PATH=/usr/local/cuda/bin:/usr/loca/nvidia/bin:$PATH
+ENV PATH=/usr/local/cuda/bin:/usr/local/nvidia/bin:$PATH
