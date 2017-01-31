@@ -137,3 +137,6 @@ RUN conda install --quiet --yes \
     'statsmodels=0.6*' \
     'sympy=1.0*' \
     && conda clean -tipsy
+
+# Add various nvidia directories to the path
+ENV PATH=/usr/local/cuda/bin:/usr/local/nvidia/bin:$PATH
