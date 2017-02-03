@@ -20,7 +20,8 @@ RUN pip --no-cache-dir install \
     git+git://github.com/fchollet/keras.git@${KERAS_VERSION}
 
 # Install Theano
-RUN conda install six
+RUN conda install six \
+    && conda clean -tipsy
 ENV THEANO_VERSION=rel-0.8.2
 RUN pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git@${THEANO_VERSION}
 RUN echo "[global]\ndevice=gpu\nfloatX=float32\n[lib]\ncnmem=0.1\n[nvcc]\nfastmath=True" > /root/.theanorc
