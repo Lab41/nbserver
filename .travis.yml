@@ -5,6 +5,11 @@ language: generic
 services:
   - docker
 
+# Pull the latest versions of the docker images to speed up compilation
+before_script:
+  - docker pull lab41/base-notebook
+  - docker pull lab41/tensorflow-notebook
+
 script:
   - docker build -t lab41/base-notebook 01_base_notebook
   - docker build -t lab41/logging-notebook 02_ganymede
